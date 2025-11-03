@@ -41,5 +41,11 @@ jobs:
       - name: Run linter
         run: pnpm lint
 
+      - name: Build project
+        run: pnpm build
+
+      - name: Generate Prisma schemas
+        run: pnpm exec prisma generate
+
       - name: Run tests
         run: pnpm test

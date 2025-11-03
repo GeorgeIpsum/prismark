@@ -47,6 +47,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Generate Prisma schemas
+        run: pnpm exec prisma generate
+
+      - name: Run tests
+        run: pnpm test
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
