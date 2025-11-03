@@ -211,9 +211,124 @@ While this package is inspired by prismabox, there are some key differences:
 3. **No nullable wrapper**: ArkType handles nullable types directly with union syntax
 4. **Different validation API**: Uses ArkType's validation approach
 
+## Development
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/prismark.git
+cd prismark
+
+# Install dependencies
+pnpm install
+
+# Build the project
+pnpm build
+
+# Run tests
+pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run linter
+pnpm lint
+
+# Fix linting issues
+pnpm lint:fix
+```
+
+### Publishing
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and publishing.
+
+#### Creating a changeset
+
+When you make changes that should be included in the next release:
+
+```bash
+pnpm changeset
+```
+
+This will prompt you to:
+1. Select the type of change (major, minor, patch)
+2. Provide a description of the changes
+
+Commit the generated changeset file along with your changes.
+
+#### Publishing workflow
+
+1. **Create a changeset** for your changes
+2. **Open a PR** with your changes and the changeset
+3. **Merge the PR** - The GitHub Action will automatically create a "Version Packages" PR
+4. **Review and merge** the Version Packages PR - This will:
+   - Update the version in package.json
+   - Update the CHANGELOG.md
+   - Publish the package to npm
+   - Create a GitHub release
+
+#### Manual publishing (maintainers only)
+
+```bash
+# Build and publish
+pnpm release
+```
+
+**Prerequisites:**
+- Set up `NPM_TOKEN` secret in GitHub repository settings
+- Ensure you have publish access to the npm package
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Create a changeset (`pnpm changeset`)
+5. Commit your changes following the commit message format (see below)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+### Commit Message Format
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/). Commit messages are automatically linted using commitlint and lefthook.
+
+Format: `<type>(<scope>): <subject>`
+
+**Types:**
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code refactoring
+- `perf`: Performance improvements
+- `test`: Adding or updating tests
+- `build`: Build system changes
+- `ci`: CI/CD changes
+- `chore`: Other changes
+
+**Examples:**
+```bash
+git commit -m "feat: add support for custom type validators"
+git commit -m "fix: resolve issue with nullable DateTime fields"
+git commit -m "docs: update installation instructions"
+git commit -m "refactor: simplify where clause generation"
+```
+
+### Git Hooks
+
+This project uses [lefthook](https://github.com/evilmartians/lefthook) to manage git hooks:
+
+- **commit-msg**: Validates commit message format
+- **pre-commit**: Runs linter and checks for debug statements
+- **pre-push**: Runs tests before pushing
+
+To skip hooks (use sparingly):
+```bash
+git commit --no-verify -m "your message"
+```
 
 ## License
 

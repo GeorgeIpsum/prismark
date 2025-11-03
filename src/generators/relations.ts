@@ -1,7 +1,5 @@
 import type { DMMF } from "@prisma/generator-helper";
 import { extractAnnotations, generateArktypeOptions } from "../annotations";
-import { wrapWithArray, wrapWithNullable } from "../wrappers";
-import { processedPlain } from "./plain";
 import type { ProcessedModel } from "../model";
 
 export const processedRelations: ProcessedModel[] = [];

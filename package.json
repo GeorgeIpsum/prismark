@@ -23,8 +23,12 @@
     "test:e2e": "pnpm build && prisma generate && vitest run",
     "pretest": "pnpm build",
     "prepublishOnly": "npm run build",
+    "postinstall": "lefthook install",
     "lint": "biome check",
-    "lint:fix": "biome check --write"
+    "lint:fix": "biome check --write",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "keywords": [
     "prisma",
@@ -38,7 +42,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/prismark.git"
+    "url": "https://github.com/GeorgeIpsum/prismark.git"
+  },
+  "homepage": "https://github.com/GeorgeIpsum/prismark#readme",
+  "bugs": {
+    "url": "https://github.com/GeorgeIpsum/prismark/issues"
   },
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
@@ -47,9 +55,13 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.3",
+    "@changesets/cli": "^2.29.7",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@prisma/client": "^6.18.0",
     "@tilli-pro/biome": "^0.8.0",
     "@types/node": "^24.10.0",
+    "lefthook": "^2.0.2",
     "pkgroll": "^2.20.1",
     "prisma": "^6.18.0",
     "tsx": "^4.20.6",

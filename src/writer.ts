@@ -148,6 +148,7 @@ export async function write(
 
   for (const [name, content] of modelMap.entries()) {
     const filePath = join(config.output, `${name}.ts`);
+    // biome-ignore lint/performance/noAwaitInLoops: <not a performance issue>
     writePromises.push(writeFile(filePath, await format(content)));
   }
 

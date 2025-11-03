@@ -1,0 +1,39 @@
+# Lefthook configuration
+# See https://github.com/evilmartians/lefthook for full documentation
+
+# Verify commit message format
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
+
+# Run linting and formatting checks before commit
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,ts,json}"
+      run: pnpm lint:fix
+      stage_fixed: true
+
+    # Prevent committing common debug patterns
+    forbidden-patterns:
+      glob: "*.{js,ts,tsx,jsx}"
+      run: |
+        if echo "{staged_files}" | xargs grep -l "console.log\|debugger" 2>/dev/null; then
+          echo "⚠️  Warning: Found console.log or debugger statements"
+          echo "Remove them or use --no-verify to skip this check"
+          exit 1
+        fi
+      skip:
+        - merge
+        - rebase
+
+# Run tests before push
+pre-push:
+  commands:
+    tests:
+      run: pnpm test
+      skip:
+        - merge
+        - rebase

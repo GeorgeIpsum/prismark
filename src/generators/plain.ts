@@ -9,7 +9,7 @@ import {
   isPrimitivePrismaFieldType,
   stringifyPrimitiveType,
 } from "../primitiveField";
-import { wrapWithArray, wrapWithNullable } from "../wrappers";
+import { wrapWithArray } from "../wrappers";
 import { processedEnums } from "./enum";
 import type { ProcessedModel } from "../model";
 
@@ -29,6 +29,8 @@ export function processPlain(
   }
   Object.freeze(processedPlain);
 }
+
+const enumMatch = /type\("(.+)"\)/;
 
 function stringifyPlain(
   model: DMMF.Model,
@@ -84,7 +86,7 @@ function stringifyPlain(
       const enumDef = processedEnums.find((e) => e.name === field.type);
       if (!enumDef) continue;
       // Extract from type("'A' | 'B'") -> "'A' | 'B'" (keep the quotes)
-      const match = enumDef.stringified.match(/type\("(.+)"\)/);
+      const match = enumDef.stringified.match(enumMatch);
       fieldType = match ? `"${match[1]}"` : `"'${field.type}'"`;
     } else {
       continue;
@@ -99,12 +101,12 @@ function stringifyPlain(
       const inner = fieldType.slice(1, -1);
       fieldType = `"${inner} | null"`;
       // In ArkType, optional fields (can be missing) need ? on the key
-      fieldName = fieldName + "?";
+      fieldName += "?";
     }
     // Fields with defaults are also optional in create/update
     if (field.hasDefaultValue || isInputUpdate) {
       if (!fieldName.endsWith("?")) {
-        fieldName = fieldName + "?";
+        fieldName += "?";
       }
     }
 

@@ -39,6 +39,8 @@ export function processWhere(
   Object.freeze(processedWhereUnique);
 }
 
+const enumMatch = /type\("(.+)"\)/;
+
 function stringifyWhere(model: DMMF.Model): string | undefined {
   const { annotations: modelAnnotations, hidden } = extractAnnotations(
     model.documentation,
@@ -67,7 +69,7 @@ function stringifyWhere(model: DMMF.Model): string | undefined {
     } else if (field.kind === "enum") {
       const enumDef = processedEnums.find((e) => e.name === field.type);
       if (!enumDef) continue;
-      const match = enumDef.stringified.match(/type\("(.+)"\)/);
+      const match = enumDef.stringified.match(enumMatch);
       fieldType = match ? `"${match[1]}"` : `"'${field.type}'"`;
     } else {
       continue;
@@ -115,7 +117,7 @@ function stringifyWhereUnique(model: DMMF.Model): string | undefined {
     } else if (field.kind === "enum") {
       const enumDef = processedEnums.find((e) => e.name === field.type);
       if (!enumDef) continue;
-      const match = enumDef.stringified.match(/type\("(.+)"\)/);
+      const match = enumDef.stringified.match(enumMatch);
       fieldType = match ? `"${match[1]}"` : `"'${field.type}'"`;
     } else {
       continue;

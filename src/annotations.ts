@@ -1,5 +1,3 @@
-import type { DMMF } from "@prisma/generator-helper";
-
 export type Annotation =
   | { type: "HIDDEN" }
   | { type: "HIDDEN_INPUT" }
@@ -62,6 +60,9 @@ const annotationKeys = [
   { keys: ["@prismark.typeOverwrite"], type: "TYPE_OVERWRITE" as const },
 ];
 
+const prismarkOptionsRegex = /@prismark\.options\{(.+)\}/;
+const prismarkTypeOverwriteRegex = /@prismark\.typeOverwrite=(.+)/;
+
 export function extractAnnotations(documentation?: string): {
   annotations: Annotation[];
   description: string;
@@ -83,14 +84,14 @@ export function extractAnnotations(documentation?: string): {
             isAnnotation = true;
 
             if (type === "OPTIONS") {
-              const match = line.match(/@prismark\.options\{(.+)\}/);
+              const match = line.match(prismarkOptionsRegex);
               if (match && match[1]) {
                 annotations.push({ type: "OPTIONS", value: match[1] });
               } else {
                 throw new Error(`Invalid OPTIONS annotation: ${line}`);
               }
             } else if (type === "TYPE_OVERWRITE") {
-              const match = line.match(/@prismark\.typeOverwrite=(.+)/);
+              const match = line.match(prismarkTypeOverwriteRegex);
               if (match && match[1]) {
                 annotations.push({
                   type: "TYPE_OVERWRITE",
@@ -105,6 +106,7 @@ export function extractAnnotations(documentation?: string): {
             break;
           }
         }
+        // biome-ignore lint/nursery/noUnnecessaryConditions: <idk>
         if (isAnnotation) break;
       }
 
