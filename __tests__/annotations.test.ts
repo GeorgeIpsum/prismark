@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 const GENERATED_PATH = join(__dirname, "../prisma/generated");
 
 describe("Annotation Support", () => {
-  it("should hide models marked with @prismark.hide", async () => {
+  it("should hide models marked with @prisma-arktype.hide", async () => {
     // HiddenModel should not be generated
     const hiddenModelPath = join(GENERATED_PATH, "HiddenModel.ts");
     await expect(access(hiddenModelPath)).rejects.toThrow();

@@ -1,10 +1,10 @@
-# prismark
+# prisma-arktype
 
 ## 2.0.0
 
 ### Major Changes
 
-- c4789cd: Initial release of prismark - Generate ArkType schemas from your Prisma schema.
+- c4789cd: Initial release of prisma-arktype - Generate ArkType schemas from your Prisma schema.
 
   Features:
 
@@ -15,8 +15,8 @@
   - Support for Prisma relations
   - Support for Prisma enums
   - Annotation support for fine-grained control:
-    - @prismark.hide - Hide models or fields from generation
-    - @prismark.input.hide - Hide fields from input schemas
-    - @prismark.create.input.hide - Hide fields from create schemas
-    - @prismark.update.input.hide - Hide fields from update schemas
-    - @prismark.typeOverwrite - Override generated types
+    - @prisma-arktype.hide - Hide models or fields from generation
+    - @prisma-arktype.input.hide - Hide fields from input schemas
+    - @prisma-arktype.create.input.hide - Hide fields from create schemas
+    - @prisma-arktype.update.input.hide - Hide fields from update schemas
+    - @prisma-arktype.typeOverwrite - Override generated types

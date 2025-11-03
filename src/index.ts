@@ -30,7 +30,7 @@ generatorHandler({
   onManifest() {
     return {
       defaultOutput: "./prisma/generated/validators",
-      prettyName: "prismark",
+      prettyName: "prisma-arktype",
     };
   },
   async onGenerate(options) {
@@ -75,6 +75,6 @@ generatorHandler({
       processedOrderBy,
     );
 
-    console.info("✅ prismark: Generated ArkType schemas successfully!");
+    console.info("✅ prisma-arktype: Generated ArkType schemas successfully!");
   },
 });

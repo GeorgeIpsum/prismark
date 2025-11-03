@@ -22,7 +22,7 @@ This project follows the [Conventional Commits](https://www.conventionalcommits.
 
 | Type | Description | Example |
 |------|-------------|---------|
-| `feat` | New feature | `feat: add support for @prismark.readonly` |
+| `feat` | New feature | `feat: add support for @prisma-arktype.readonly` |
 | `fix` | Bug fix | `fix: resolve null handling in DateTime fields` |
 | `docs` | Documentation only | `docs: add examples for annotations` |
 | `style` | Code style/formatting | `style: format with biome` |
@@ -50,7 +50,7 @@ git commit -m "fix(generator): handle optional relations correctly"
 ```bash
 git commit -m "feat: add custom validator support
 
-Allow users to specify custom ArkType validators using @prismark.validator annotation.
+Allow users to specify custom ArkType validators using @prisma-arktype.validator annotation.
 
 Closes #123"
 ```

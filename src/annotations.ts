@@ -43,25 +43,34 @@ export function isTypeOverwrite(
 }
 
 const annotationKeys = [
-  { keys: ["@prismark.hide", "@prismark.hidden"], type: "HIDDEN" as const },
   {
-    keys: ["@prismark.input.hide", "@prismark.input.hidden"],
+    keys: ["@prisma-arktype.hide", "@prisma-arktype.hidden"],
+    type: "HIDDEN" as const,
+  },
+  {
+    keys: ["@prisma-arktype.input.hide", "@prisma-arktype.input.hidden"],
     type: "HIDDEN_INPUT" as const,
   },
   {
-    keys: ["@prismark.create.input.hide", "@prismark.create.input.hidden"],
+    keys: [
+      "@prisma-arktype.create.input.hide",
+      "@prisma-arktype.create.input.hidden",
+    ],
     type: "HIDDEN_INPUT_CREATE" as const,
   },
   {
-    keys: ["@prismark.update.input.hide", "@prismark.update.input.hidden"],
+    keys: [
+      "@prisma-arktype.update.input.hide",
+      "@prisma-arktype.update.input.hidden",
+    ],
     type: "HIDDEN_INPUT_UPDATE" as const,
   },
-  { keys: ["@prismark.options"], type: "OPTIONS" as const },
-  { keys: ["@prismark.typeOverwrite"], type: "TYPE_OVERWRITE" as const },
+  { keys: ["@prisma-arktype.options"], type: "OPTIONS" as const },
+  { keys: ["@prisma-arktype.typeOverwrite"], type: "TYPE_OVERWRITE" as const },
 ];
 
-const prismarkOptionsRegex = /@prismark\.options\{(.+)\}/;
-const prismarkTypeOverwriteRegex = /@prismark\.typeOverwrite=(.+)/;
+const prismaArktypeOptionsRegex = /@prisma-arktype\.options\{(.+)\}/;
+const prismaArktypeTypeOverwriteRegex = /@prisma-arktype\.typeOverwrite=(.+)/;
 
 export function extractAnnotations(documentation?: string): {
   annotations: Annotation[];
@@ -84,14 +93,14 @@ export function extractAnnotations(documentation?: string): {
             isAnnotation = true;
 
             if (type === "OPTIONS") {
-              const match = line.match(prismarkOptionsRegex);
+              const match = line.match(prismaArktypeOptionsRegex);
               if (match && match[1]) {
                 annotations.push({ type: "OPTIONS", value: match[1] });
               } else {
                 throw new Error(`Invalid OPTIONS annotation: ${line}`);
               }
             } else if (type === "TYPE_OVERWRITE") {
-              const match = line.match(prismarkTypeOverwriteRegex);
+              const match = line.match(prismaArktypeTypeOverwriteRegex);
               if (match && match[1]) {
                 annotations.push({
                   type: "TYPE_OVERWRITE",

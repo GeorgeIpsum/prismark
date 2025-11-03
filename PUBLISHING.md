@@ -1,6 +1,6 @@
 # Publishing Guide
 
-This guide explains how to publish new versions of prismark to npm using Changesets.
+This guide explains how to publish new versions of prisma-arktype to npm using Changesets.
 
 ## Setup (One-time)
 
@@ -12,11 +12,11 @@ Before publishing, update the repository URL in `package.json`:
 {
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/prismark.git"
+    "url": "https://github.com/YOUR_USERNAME/prisma-arktype.git"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/prismark#readme",
+  "homepage": "https://github.com/YOUR_USERNAME/prisma-arktype#readme",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/prismark/issues"
+    "url": "https://github.com/YOUR_USERNAME/prisma-arktype/issues"
   }
 }
 ```
@@ -40,7 +40,7 @@ Before publishing, update the repository URL in `package.json`:
 
 ### 3. Publish Access
 
-Ensure you have publish access to the `prismark` package on npm. If the package doesn't exist yet, the first publish will create it.
+Ensure you have publish access to the `prisma-arktype` package on npm. If the package doesn't exist yet, the first publish will create it.
 
 ## Publishing Workflow
 
@@ -131,7 +131,7 @@ Follow [Semantic Versioning](https://semver.org/):
 Example changeset:
 ```markdown
 ---
-"prismark": major
+"prisma-arktype": major
 ---
 
 BREAKING: Remove support for Prisma v3. Now requires Prisma v4+.
@@ -146,10 +146,10 @@ BREAKING: Remove support for Prisma v3. Now requires Prisma v4+.
 Example changeset:
 ```markdown
 ---
-"prismark": minor
+"prisma-arktype": minor
 ---
 
-Add support for @prismark.readonly annotation to mark fields as read-only.
+Add support for @prisma-arktype.readonly annotation to mark fields as read-only.
 ```
 
 ### Patch (Bug Fixes)
@@ -161,7 +161,7 @@ Add support for @prismark.readonly annotation to mark fields as read-only.
 Example changeset:
 ```markdown
 ---
-"prismark": patch
+"prisma-arktype": patch
 ---
 
 Fix incorrect type generation for optional DateTime fields.

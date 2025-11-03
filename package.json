@@ -1,5 +1,5 @@
 {
-  "name": "prismark",
+  "name": "prisma-arktype",
   "version": "2.0.0",
   "description": "Generate ArkType schemas from your Prisma schema",
   "type": "module",
@@ -12,7 +12,7 @@
     }
   },
   "bin": {
-    "prismark": "./dist/index.js"
+    "prisma-arktype": "./dist/index.js"
   },
   "files": ["dist"],
   "scripts": {
@@ -42,11 +42,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GeorgeIpsum/prismark.git"
+    "url": "https://github.com/GeorgeIpsum/prisma-arktype.git"
   },
-  "homepage": "https://github.com/GeorgeIpsum/prismark#readme",
+  "homepage": "https://github.com/GeorgeIpsum/prisma-arktype#readme",
   "bugs": {
-    "url": "https://github.com/GeorgeIpsum/prismark/issues"
+    "url": "https://github.com/GeorgeIpsum/prisma-arktype/issues"
   },
   "packageManager": "pnpm@10.19.0",
   "dependencies": {

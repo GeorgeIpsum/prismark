@@ -9,7 +9,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator prismark {
+generator prisma-arktype {
   provider = "node ./dist/index.js"
   output   = "./generated"
 }
@@ -80,7 +80,7 @@ model Comment {
   createdAt DateTime @default(now())
 }
 
-/// @prismark.hide
+/// @prisma-arktype.hide
 model HiddenModel {
   id   String @id
   data String
@@ -88,15 +88,15 @@ model HiddenModel {
 
 model AnnotatedModel {
   id               String  @id @default(cuid())
-  /// @prismark.hide
+  /// @prisma-arktype.hide
   hiddenField      String?
-  /// @prismark.input.hide
+  /// @prisma-arktype.input.hide
   computedField    String?
-  /// @prismark.create.input.hide
+  /// @prisma-arktype.create.input.hide
   updateOnlyField  String?
-  /// @prismark.update.input.hide
+  /// @prisma-arktype.update.input.hide
   createOnlyField  String?
-  /// @prismark.typeOverwrite="string.email"
+  /// @prisma-arktype.typeOverwrite="string.email"
   email            String
   normalField      String
 }

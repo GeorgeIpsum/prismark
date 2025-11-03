@@ -1,4 +1,4 @@
-# prismark
+# prisma-arktype
 
 Generate [ArkType](https://arktype.io) validation schemas from your [Prisma](https://www.prisma.io) schema.
 
@@ -15,11 +15,11 @@ This package is heavily inspired by and based on the structure of [prismabox](ht
 ## Installation
 
 ```bash
-npm install prismark arktype
+npm install prisma-arktype arktype
 # or
-pnpm add prismark arktype
+pnpm add prisma-arktype arktype
 # or
-yarn add prismark arktype
+yarn add prisma-arktype arktype
 ```
 
 ## Usage
@@ -29,8 +29,8 @@ yarn add prismark arktype
 Add the generator to your `schema.prisma` file:
 
 ```prisma
-generator prismark {
-  provider = "prismark"
+generator prisma-arktype {
+  provider = "prisma-arktype"
   output   = "./generated/validators"
 }
 
@@ -66,8 +66,8 @@ npx prisma generate
 Configure the generator in your `schema.prisma`:
 
 ```prisma
-generator prismark {
-  provider                     = "prismark"
+generator prisma-arktype {
+  provider                     = "prisma-arktype"
   output                       = "./generated/validators"
   arktypeImportDependencyName  = "arktype"
   ignoredKeysOnInputModels     = ["id", "createdAt", "updatedAt"]
@@ -137,14 +137,14 @@ Control schema generation using annotations in your Prisma schema:
 ### Hide Fields/Models
 
 ```prisma
-/// @prismark.hide
+/// @prisma-arktype.hide
 model InternalModel {
   id String @id
 }
 
 model User {
   id String @id
-  /// @prismark.hide
+  /// @prisma-arktype.hide
   internalField String
 }
 ```
@@ -154,11 +154,11 @@ model User {
 ```prisma
 model User {
   id String @id
-  /// @prismark.input.hide
+  /// @prisma-arktype.input.hide
   computedField String
-  /// @prismark.create.input.hide
+  /// @prisma-arktype.create.input.hide
   onlyInUpdates String
-  /// @prismark.update.input.hide
+  /// @prisma-arktype.update.input.hide
   onlyInCreates String
 }
 ```
@@ -168,9 +168,9 @@ model User {
 ```prisma
 model User {
   id String @id
-  /// @prismark.typeOverwrite="string.email"
+  /// @prisma-arktype.typeOverwrite="string.email"
   email String
-  /// @prismark.typeOverwrite="string.numeric"
+  /// @prisma-arktype.typeOverwrite="string.numeric"
   phone String
 }
 ```
@@ -180,7 +180,7 @@ model User {
 ```prisma
 model User {
   id String @id
-  /// @prismark.options{minLength: 3, maxLength: 50}
+  /// @prisma-arktype.options{minLength: 3, maxLength: 50}
   username String
 }
 ```
@@ -217,8 +217,8 @@ While this package is inspired by prismabox, there are some key differences:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/prismark.git
-cd prismark
+git clone https://github.com/yourusername/prisma-arktype.git
+cd prisma-arktype
 
 # Install dependencies
 pnpm install
